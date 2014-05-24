@@ -15,7 +15,7 @@ start() {
         echo Config file does not exist
         exit 2
     fi
-    
+
     . $CONFIG
 
     USERID=$(id -u $USER)
@@ -30,8 +30,7 @@ start() {
         exit 2
     fi
 
-    export N2N_KEY=$KEY
-    nohup $EXEC -a $ADDRESS -m $MAC -c $COMMUNITY -l $SUPERNODE -u $USERID -g $GROUPID &> $LOGFILE &
+    N2N_KEY=$KEY nohup $EXEC -a $ADDRESS -m $MAC -c $COMMUNITY -l $SUPERNODE -u $USERID -g $GROUPID &> $LOGFILE &
 
     PID=$!
 
