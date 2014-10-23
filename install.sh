@@ -1,6 +1,6 @@
-if [ $(id -u) != 0 ]; then
-    echo "You must be a root user" 2>&1
-    exit 1
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
 fi
 
 useradd -M -r -s /bin/false n2n
