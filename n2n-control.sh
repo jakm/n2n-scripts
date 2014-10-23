@@ -6,6 +6,11 @@ CONFIG=/etc/n2n.conf
 PIDFILE=/var/run/${PROG}.pid
 LOGFILE=/var/log/${PROG}.log
 
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
 start() {
     if ! [ -x $EXEC ]; then
         echo The edge executable does not exist
